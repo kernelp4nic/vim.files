@@ -11,6 +11,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'ervandew/supertab'
 Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-fugitive'
 
 set hlsearch "highlight searched things
 set incsearch "incremental search
@@ -25,10 +26,10 @@ set showmatch "show maching braces
 set shiftwidth=4
 set tabstop=4
 set mouse=a "enable mouse
+set encoding=utf-8 
+set background=dark
 
 syntax enable
-
-set background=dark
 "let g:solarized_termcolors = 256
 "let g:solarized_visibility = 'high'
 "let g:solarized_contrast = 'high'
@@ -43,6 +44,10 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 "vim powerline
 let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols_override = {
+        \ 'BRANCH': [0x2213],
+        \ 'LINE': 'L',
+        \ }
 
 "NerdTree Stuff
 autocmd VimEnter * NERDTree "Open Nerdtree at startup
