@@ -4,14 +4,17 @@ filetype off
 "Vundle - Package manager
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+"vim +BundleInstall +qall
 
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/nerdtree'
-Bundle 'ervandew/supertab'
-Bundle 'majutsushi/tagbar'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdtree' 
+Bundle 'ervandew/supertab' 
+Bundle 'majutsushi/tagbar' 
+Bundle 'kien/ctrlp.vim' 
+Bundle 'tpope/vim-fugitive' 
+Bundle 'mileszs/ack.vim' 
+Bundle 'dterei/VimBookmarking' 
 
 set hlsearch "highlight searched things
 set incsearch "incremental search
@@ -33,14 +36,17 @@ syntax enable
 "let g:solarized_termcolors = 256
 "let g:solarized_visibility = 'high'
 "let g:solarized_contrast = 'high'
-colorscheme solarized
+"colorscheme solarized
 colorscheme molokai
 
 "keymaps
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+map <C>l :set list<cr>
+map <C-n>g :Grep<cr>
 
 "ctr+p
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+nnoremap <C-n>b :CtrlPBuffer<cr>
 
 "vim powerline
 let g:Powerline_symbols = 'fancy'
@@ -49,13 +55,33 @@ let g:Powerline_symbols_override = {
         \ 'LINE': 'L',
         \ }
 
-"NerdTree Stuff
-autocmd VimEnter * NERDTree "Open Nerdtree at startup
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$','\.png'] "Ignore file types
-let g:NERDTreeChDirMode=2 "When open folder on nerdtree move to the folder
-map <C-n>n :NERDTreeToggle<CR> "Open/Close nerdtree 
-let NERDTreeShowBookmarks=1 "Display bookmarks at startup
-
 "TagBar
 map <C-n>t :TagbarToggle<cr>
+let g:tagbar_left=1
+
+"Bookmarks
+map <C-m> :ToggleBookmark<cr>
+map <C-m>n :NextBookmark<cr>
+map <C-m>b :PreviousBookmark<cr>
+
+"NerdTree Stuff
+autocmd VimEnter * NERDTree "Open Nerdtree at startup
+autocmd TabEnter * NERDTree "Open Nerdtree at startup
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$','\.png'] "Ignore file types
+let g:NERDTreeChDirMode=2 "When open folder on nerdtree move to the folder
+map <C-n>n :NERDTreeToggle<CR> 
+let NERDTreeShowBookmarks=1 "Display bookmarks at startup
+
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
 
