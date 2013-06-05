@@ -28,15 +28,11 @@ set nu "show line number
 set showmatch "show maching braces
 set shiftwidth=4
 set tabstop=4
-set mouse=a "enable mouse
+"set mouse=a "enable mouse
 set encoding=utf-8 
 set background=dark
 
 syntax enable
-"let g:solarized_termcolors = 256
-"let g:solarized_visibility = 'high'
-"let g:solarized_contrast = 'high'
-"colorscheme solarized
 colorscheme molokai
 
 "keymaps
@@ -65,8 +61,8 @@ map <C-m>n :NextBookmark<cr>
 map <C-m>b :PreviousBookmark<cr>
 
 "NerdTree Stuff
-autocmd VimEnter * NERDTree "Open Nerdtree at startup
-autocmd TabEnter * NERDTree "Open Nerdtree at startup
+"autocmd VimEnter * NERDTree "Open Nerdtree at startup
+"autocmd TabEnter * NERDTree "Open Nerdtree at startup
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$','\.png'] "Ignore file types
 let g:NERDTreeChDirMode=2 "When open folder on nerdtree move to the folder
 map <C-n>n :NERDTreeToggle<CR> 
