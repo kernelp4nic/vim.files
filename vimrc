@@ -1,6 +1,8 @@
 set nocompatible 
 filetype off
 
+set shell=/bin/bash
+
 "Vundle - Package manager
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -28,9 +30,9 @@ set nu "show line number
 set showmatch "show maching braces
 set shiftwidth=4
 set tabstop=4
-"set mouse=a "enable mouse
 set encoding=utf-8 
 set background=dark
+"set mouse=a "enable mouse
 
 syntax enable
 colorscheme molokai
@@ -62,7 +64,6 @@ map <C-m>b :PreviousBookmark<cr>
 
 "NerdTree Stuff
 "autocmd VimEnter * NERDTree "Open Nerdtree at startup
-"autocmd TabEnter * NERDTree "Open Nerdtree at startup
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$','\.png'] "Ignore file types
 let g:NERDTreeChDirMode=2 "When open folder on nerdtree move to the folder
 map <C-n>n :NERDTreeToggle<CR> 
