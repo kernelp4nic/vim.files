@@ -1,2 +1,3 @@
-set guifont=Monaco:h12	
+set guifont=Monaco:h15
 set guioptions-=T " Hide toolbar.
+

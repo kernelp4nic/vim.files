@@ -1,7 +1,5 @@
-set nocompatible 
-filetype off
-
-set shell=/bin/bash
+set nocompatible
+set shell=/usr/local/bin/fish
 
 "Vundle - Package manager
 set rtp+=~/.vim/bundle/vundle/
@@ -9,76 +7,58 @@ call vundle#rc()
 "vim +BundleInstall +qall
 
 Bundle 'gmarik/vundle'
+Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/nerdtree' 
-Bundle 'ervandew/supertab' 
-Bundle 'majutsushi/tagbar' 
-Bundle 'kien/ctrlp.vim' 
-Bundle 'tpope/vim-fugitive' 
-Bundle 'mileszs/ack.vim' 
-Bundle 'dterei/VimBookmarking' 
+Bundle 'scrooloose/nerdtree'
+Bundle 'ervandew/supertab'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'mileszs/ack.vim'
+Bundle 'dterei/VimBookmarking'
+Bundle 'tpope/vim-fireplace'
+Bundle 'guns/vim-clojure-static'
+Bundle 'amdt/vim-niji'
+Bundle 'vim-scripts/fish-syntax'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'bronson/vim-trailing-whitespace'
 
 set hlsearch "highlight searched things
 set incsearch "incremental search
 set laststatus=2 "show status line
 set ignorecase "ignore case
-set textwidth=0 
+set textwidth=0
 set cursorline
 set autoread "auto read when file is changed from outside
 set ruler "show current position
 set nu "show line number
 set showmatch "show maching braces
-set shiftwidth=4
-set tabstop=4
-set encoding=utf-8 
+set shiftwidth=2
+set tabstop=2
+set encoding=utf-8
 set background=dark
 "set mouse=a "enable mouse
 
 syntax enable
-colorscheme molokai
+"colorscheme molokai
+colorscheme solarized
+filetype plugin indent on
 
 "keymaps
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-map <C>l :set list<cr>
-map <C-n>g :Grep<cr>
 
 "ctr+p
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-nnoremap <C-n>b :CtrlPBuffer<cr>
-
-"vim powerline
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_symbols_override = {
-        \ 'BRANCH': [0x2213],
-        \ 'LINE': 'L',
-        \ }
-
-"TagBar
-map <C-n>t :TagbarToggle<cr>
-let g:tagbar_left=1
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 "Bookmarks
-map <C-m> :ToggleBookmark<cr>
-map <C-m>n :NextBookmark<cr>
-map <C-m>b :PreviousBookmark<cr>
+"map <D><F2> :ToggleBookmark<cr>
+"map <C-m>n :NextBookmark<cr>
+"map <C-m>b :PreviousBookmark<cr>
 
 "NerdTree Stuff
-"autocmd VimEnter * NERDTree "Open Nerdtree at startup
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$','\.png'] "Ignore file types
-let g:NERDTreeChDirMode=2 "When open folder on nerdtree move to the folder
-map <C-n>n :NERDTreeToggle<CR> 
+map <C-n>n :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1 "Display bookmarks at startup
-
-autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
-" Close all open buffers on entering a window if the only
-" buffer that's left is the NERDTree buffer
-function! s:CloseIfOnlyNerdTreeLeft()
-  if exists("t:NERDTreeBufName")
-    if bufwinnr(t:NERDTreeBufName) != -1
-      if winnr("$") == 1
-        q
-      endif
-    endif
-  endif
-endfunction
-
+let g:NERDTreeChDirMode=2 "When open folder on nerdtree move to the folder
